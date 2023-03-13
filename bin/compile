@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+export BUILD_DIR=$1
+if [ ! -f "$BUILD_DIR/.gitmodules" ]; then
+  echo "-----> WARNING: Git modules definition file '.gitmodules' not found. Skipping Git submodules import..."
+  exit 0
+fi
+if ! command -v python &> /dev/null; then
+  echo "-----> ERROR: Python must be installed before launching this buildpack"
+  exit 1
+fi
+
+python $(cd $(dirname $0); cd ..; pwd)/bin/install_git_submodules.py

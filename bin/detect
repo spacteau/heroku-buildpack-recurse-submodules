@@ -1,0 +1,3 @@
+#!/bin/sh
+
+echo "Git submodules recursive import buildpack"
